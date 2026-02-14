@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
+  <rect width="1400" height="560" fill="#0e1118"/>
+  <rect x="40" y="40" width="1320" height="200" rx="20" fill="#1b2a3d"/>
+  <text x="80" y="105" fill="#dab96e" font-family="Arial, sans-serif" font-size="36" font-weight="700">Ezan Vakti</text>
+  <text x="80" y="165" fill="#f0ece3" font-family="Arial, sans-serif" font-size="30">Siradaki: Ikindi 16:24 | 1s 12dk kaldi</text>
+
+  <rect x="40" y="280" width="1320" height="240" rx="20" fill="#243447"/>
+  <g fill="#bfa36b" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <text x="95" y="355">Imsak</text><text x="315" y="355">Gunes</text><text x="535" y="355">Ogle</text>
+    <text x="755" y="355">Ikindi</text><text x="975" y="355">Aksam</text><text x="1195" y="355">Yatsi</text>
+  </g>
+  <g fill="#f0ece3" font-family="Arial, sans-serif" font-size="28">
+    <text x="95" y="420">06:07</text><text x="315" y="420">07:29</text><text x="535" y="420">13:14</text>
+    <text x="755" y="420">16:24</text><text x="975" y="420">18:51</text><text x="1195" y="420">20:11</text>
+  </g>
+</svg>

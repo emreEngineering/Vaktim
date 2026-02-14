@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860">
+  <rect width="1500" height="860" fill="#0d1b2a"/>
+  <text x="60" y="70" fill="#f0ece3" font-family="Arial, sans-serif" font-size="42" font-weight="700">Vaktim Architecture</text>
+
+  <rect x="70" y="120" width="410" height="160" rx="16" fill="#243447"/>
+  <text x="100" y="180" fill="#dab96e" font-family="Arial, sans-serif" font-size="32" font-weight="700">UI Layer</text>
+  <text x="100" y="230" fill="#f0ece3" font-family="Arial, sans-serif" font-size="24">Compose Screen, Components</text>
+
+  <rect x="540" y="120" width="410" height="160" rx="16" fill="#243447"/>
+  <text x="570" y="180" fill="#dab96e" font-family="Arial, sans-serif" font-size="32" font-weight="700">Domain Layer</text>
+  <text x="570" y="230" fill="#f0ece3" font-family="Arial, sans-serif" font-size="24">UseCase + Mappers + Models</text>
+
+  <rect x="1010" y="120" width="410" height="160" rx="16" fill="#243447"/>
+  <text x="1040" y="180" fill="#dab96e" font-family="Arial, sans-serif" font-size="32" font-weight="700">Data Layer</text>
+  <text x="1040" y="230" fill="#f0ece3" font-family="Arial, sans-serif" font-size="24">Repository + Retrofit + Prefs</text>
+
+  <rect x="305" y="420" width="410" height="160" rx="16" fill="#1b2a3d"/>
+  <text x="335" y="480" fill="#dab96e" font-family="Arial, sans-serif" font-size="32" font-weight="700">Service Layer</text>
+  <text x="335" y="530" fill="#f0ece3" font-family="Arial, sans-serif" font-size="24">Foreground Notification Service</text>
+
+  <rect x="785" y="420" width="410" height="160" rx="16" fill="#1b2a3d"/>
+  <text x="815" y="480" fill="#dab96e" font-family="Arial, sans-serif" font-size="32" font-weight="700">DI Layer</text>
+  <text x="815" y="530" fill="#f0ece3" font-family="Arial, sans-serif" font-size="24">AppContainer + AppGraph</text>
+
+  <g stroke="#c5993e" stroke-width="4" fill="none">
+    <path d="M480 200 L540 200"/>
+    <path d="M950 200 L1010 200"/>
+    <path d="M750 280 L750 420"/>
+    <path d="M750 500 L785 500"/>
+    <path d="M750 500 L715 500"/>
+  </g>
+</svg>
