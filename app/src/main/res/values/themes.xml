@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Vaktim" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#FF0D1B2A</item>
+    </style>
+</resources>
