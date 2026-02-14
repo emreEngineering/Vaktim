@@ -14,15 +14,15 @@ Vaktim, namaz vakitlerini gosteren, sonraki vakti hesaplayan ve bildirim cubugun
 
 ### Ana Ekran (Temsili)
 
-![Vaktim Ana Ekran](docs/images/preview-home.svg)
+<img src="docs/images/preview-home.svg" alt="Vaktim Ana Ekran" width="320" />
 
 ### Bildirim Gorunumu (Temsili)
 
-![Vaktim Bildirim](docs/images/preview-notification.svg)
+<img src="docs/images/preview-notification.svg" alt="Vaktim Bildirim" width="760" />
 
 ### Mimari Diyagram
 
-![Vaktim Mimari](docs/images/architecture.svg)
+<img src="docs/images/architecture.svg" alt="Vaktim Mimari" width="760" />
 
 ## APK Indirme
 
