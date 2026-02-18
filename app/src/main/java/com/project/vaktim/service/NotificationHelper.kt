@@ -6,6 +6,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
@@ -28,7 +30,7 @@ class NotificationHelper(private val context: Context) {
                 "Ezan Vakti",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Namaz vakitlerini bildirim panelinde gosterir"
+                description = "Namaz vakitlerini bildirim panelinde gösterir"
                 setShowBadge(false)
             }
             val notificationManager = context.getSystemService(NotificationManager::class.java)
@@ -42,7 +44,7 @@ class NotificationHelper(private val context: Context) {
 
         val collapsedView = RemoteViews(context.packageName, R.layout.notification_collapsed)
         val collapsedText = if (nextPrayer != null && remainingTime.isNotBlank() && remainingTime != "--") {
-            "Siradaki: ${nextPrayer.turkishName} ${nextPrayer.time} | $remainingTime kaldi"
+            "Sıradaki: ${nextPrayer.turkishName} ${nextPrayer.time} | $remainingTime kaldı"
         } else {
             prayerTimes.joinToString("  |  ") { "${it.turkishName} ${it.time}" }
         }
@@ -58,6 +60,8 @@ class NotificationHelper(private val context: Context) {
                 expandedView.setTextViewText(timeIds[index], prayer.time)
             }
         }
+
+        applyNotificationTextColors(collapsedView, expandedView, nameIds, timeIds)
 
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_hilal)
@@ -98,5 +102,21 @@ class NotificationHelper(private val context: Context) {
             Intent(context, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
+    }
+
+    private fun applyNotificationTextColors(
+        collapsedView: RemoteViews,
+        expandedView: RemoteViews,
+        nameIds: List<Int>,
+        timeIds: List<Int>
+    ) {
+        val isNightMode = (context.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        val primaryTextColor = if (isNightMode) Color.WHITE else Color.BLACK
+        val secondaryTextColor = if (isNightMode) Color.parseColor("#E0E0E0") else Color.DKGRAY
+
+        collapsedView.setTextColor(R.id.textTimes, primaryTextColor)
+        nameIds.forEach { expandedView.setTextColor(it, primaryTextColor) }
+        timeIds.forEach { expandedView.setTextColor(it, secondaryTextColor) }
     }
 }

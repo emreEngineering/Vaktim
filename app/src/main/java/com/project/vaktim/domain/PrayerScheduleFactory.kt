@@ -8,12 +8,12 @@ class PrayerScheduleFactory {
 
     fun createSchedule(timings: Timings): List<PrayerTime> {
         return listOf(
-            PrayerTime("Fajr", "Imsak", PrayerTimeUtils.cleanTime(timings.fajr)),
-            PrayerTime("Sunrise", "Gunes", PrayerTimeUtils.cleanTime(timings.sunrise)),
-            PrayerTime("Dhuhr", "Ogle", PrayerTimeUtils.cleanTime(timings.dhuhr)),
-            PrayerTime("Asr", "Ikindi", PrayerTimeUtils.cleanTime(timings.asr)),
-            PrayerTime("Maghrib", "Aksam", PrayerTimeUtils.cleanTime(timings.maghrib)),
-            PrayerTime("Isha", "Yatsi", PrayerTimeUtils.cleanTime(timings.isha))
+            PrayerTime("Fajr", "İmsak", PrayerTimeUtils.cleanTime(timings.fajr)),
+            PrayerTime("Sunrise", "Güneş", PrayerTimeUtils.cleanTime(timings.sunrise)),
+            PrayerTime("Dhuhr", "Öğle", PrayerTimeUtils.cleanTime(timings.dhuhr)),
+            PrayerTime("Asr", "İkindi", PrayerTimeUtils.cleanTime(timings.asr)),
+            PrayerTime("Maghrib", "Akşam", PrayerTimeUtils.cleanTime(timings.maghrib)),
+            PrayerTime("Isha", "Yatsı", PrayerTimeUtils.cleanTime(timings.isha))
         )
     }
 }
