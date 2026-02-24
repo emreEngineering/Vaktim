@@ -1,5 +1,6 @@
 package com.project.vaktim.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,8 +36,10 @@ fun LocationSelector(
     }
 
     Card(
-        colors = CardDefaults.cardColors(containerColor = NavyCard),
-        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = NavyCard.copy(alpha = 0.7f)),
+        shape = RoundedCornerShape(22.dp),
+        border = BorderStroke(1.dp, GlassBorderSoft),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -88,7 +92,7 @@ fun LocationSelector(
                             onLocationChanged(selectedCity, selectedCountry, selectedDistrict)
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = GoldPrimary),
+                    colors = ButtonDefaults.buttonColors(containerColor = GoldPrimary.copy(alpha = 0.9f)),
                     modifier = Modifier.align(Alignment.End),
                     shape = RoundedCornerShape(12.dp),
                     enabled = selectedCity.isNotBlank() && selectedCountry.isNotBlank()
@@ -160,8 +164,11 @@ fun LocationDropdown(
                 cursorColor = GoldPrimary,
                 focusedBorderColor = GoldPrimary,
                 unfocusedBorderColor = GoldMuted.copy(alpha = 0.5f),
+                focusedContainerColor = GlassHighlight,
+                unfocusedContainerColor = Color.Transparent,
                 disabledTextColor = TextMuted.copy(alpha = 0.5f),
-                disabledBorderColor = GoldMuted.copy(alpha = 0.2f)
+                disabledBorderColor = GoldMuted.copy(alpha = 0.2f),
+                disabledContainerColor = Color.Transparent
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -179,7 +186,7 @@ fun LocationDropdown(
                 searchQuery = ""
             },
             modifier = Modifier
-                .background(NavyCard)
+                .background(NavySurface.copy(alpha = 0.94f))
                 .heightIn(max = 250.dp)
         ) {
             if (allowEmpty) {

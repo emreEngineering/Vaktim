@@ -1,5 +1,6 @@
 package com.project.vaktim.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -32,6 +35,10 @@ import com.project.vaktim.ui.components.NextPrayerCard
 import com.project.vaktim.ui.components.PrayerTimeCard
 import com.project.vaktim.ui.theme.GoldPrimary
 import com.project.vaktim.ui.theme.MidnightNavy
+import com.project.vaktim.ui.theme.MidnightNavySoft
+import com.project.vaktim.ui.theme.ScreenBottomTint
+import com.project.vaktim.ui.theme.ScreenSideGlow
+import com.project.vaktim.ui.theme.ScreenTopGlow
 import kotlinx.coroutines.delay
 
 @Composable
@@ -56,60 +63,98 @@ fun PrayerTimesScreen(
         }
     }
 
-    Scaffold(containerColor = MidnightNavy) { paddingValues ->
-        Column(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Brush.verticalGradient(listOf(MidnightNavy, MidnightNavySoft)))
+    ) {
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 6.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            LocationSelector(
-                currentCity = uiState.city,
-                currentCountry = uiState.country,
-                currentDistrict = uiState.district,
-                onLocationChanged = { city, country, district ->
-                    viewModel.onLocationChanged(city, country, district)
-                    onServiceStart(city, country, district)
-                }
-            )
+                .background(
+                    Brush.radialGradient(
+                        colors = listOf(ScreenTopGlow, Color.Transparent),
+                        center = Offset(860f, -120f),
+                        radius = 1100f
+                    )
+                )
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.radialGradient(
+                        colors = listOf(ScreenSideGlow, Color.Transparent),
+                        center = Offset(-120f, 1700f),
+                        radius = 1300f
+                    )
+                )
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(Color.Transparent, ScreenBottomTint)
+                    )
+                )
+        )
 
-            when {
-                uiState.isLoading -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = GoldPrimary)
+        Scaffold(containerColor = Color.Transparent) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 6.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                LocationSelector(
+                    currentCity = uiState.city,
+                    currentCountry = uiState.country,
+                    currentDistrict = uiState.district,
+                    onLocationChanged = { city, country, district ->
+                        viewModel.onLocationChanged(city, country, district)
+                        onServiceStart(city, country, district)
                     }
-                }
+                )
 
-                uiState.error != null -> {
-                    Text(text = "Hata: ${uiState.error}", color = Color(0xFFEF5350))
-                }
-
-                else -> {
-                    uiState.nextPrayer?.let { next ->
-                        NextPrayerCard(
-                            nextPrayer = next,
-                            remainingTime = uiState.remainingTime,
-                            hijriDate = uiState.hijriDate,
-                            gregorianDate = uiState.gregorianDate
-                        )
+                when {
+                    uiState.isLoading -> {
+                        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(color = GoldPrimary)
+                        }
                     }
 
-                    LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        items(uiState.prayerTimes, key = { it.name }) { prayer ->
-                            PrayerTimeCard(prayer = prayer, isNext = prayer == uiState.nextPrayer)
+                    uiState.error != null -> {
+                        Text(text = "Hata: ${uiState.error}", color = Color(0xFFEF5350))
+                    }
+
+                    else -> {
+                        uiState.nextPrayer?.let { next ->
+                            NextPrayerCard(
+                                nextPrayer = next,
+                                remainingTime = uiState.remainingTime,
+                                hijriDate = uiState.hijriDate,
+                                gregorianDate = uiState.gregorianDate
+                            )
                         }
 
-                        item {
-                            Spacer(modifier = Modifier.height(8.dp))
-                            DailyQuotesSection(
-                                isLoading = uiState.isQuoteLoading,
-                                quote = uiState.quote,
-                                errorMessage = uiState.quoteError
-                            )
+                        LazyColumn(
+                            verticalArrangement = Arrangement.spacedBy(10.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            items(uiState.prayerTimes, key = { it.name }) { prayer ->
+                                PrayerTimeCard(prayer = prayer, isNext = prayer == uiState.nextPrayer)
+                            }
+
+                            item {
+                                Spacer(modifier = Modifier.height(8.dp))
+                                DailyQuotesSection(
+                                    isLoading = uiState.isQuoteLoading,
+                                    quote = uiState.quote,
+                                    errorMessage = uiState.quoteError
+                                )
+                            }
                         }
                     }
                 }

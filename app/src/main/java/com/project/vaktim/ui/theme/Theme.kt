@@ -6,6 +6,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
@@ -15,6 +17,8 @@ private val AppColorScheme = darkColorScheme(
     tertiary = GoldLight,
     background = MidnightNavy,
     surface = NavyCard,
+    surfaceVariant = NavySurface,
+    outline = GlassBorderSoft,
     onPrimary = MidnightNavy,
     onBackground = TextWhite,
     onSurface = TextWhite
@@ -32,6 +36,8 @@ fun VaktimTheme(
             val insetsController = WindowCompat.getInsetsController(window, view)
             insetsController.isAppearanceLightStatusBars = false
             insetsController.isAppearanceLightNavigationBars = false
+            window.statusBarColor = Color.Transparent.toArgb()
+            window.navigationBarColor = MidnightNavy.copy(alpha = 0.72f).toArgb()
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 window.isNavigationBarContrastEnforced = false

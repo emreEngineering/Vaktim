@@ -18,10 +18,12 @@ fun PrayerTimeCard(prayer: PrayerTime, isNext: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = if (isNext) GoldPrimary.copy(alpha = 0.15f) else NavyCard
+            containerColor = if (isNext) GoldPrimary.copy(alpha = 0.2f) else NavyCard.copy(alpha = 0.62f)
         ),
-        shape = RoundedCornerShape(14.dp),
-        border = if (isNext) BorderStroke(1.dp, GoldPrimary) else null
+        shape = RoundedCornerShape(18.dp),
+        border = if (isNext) BorderStroke(1.dp, GoldPrimary.copy(alpha = 0.85f))
+        else BorderStroke(1.dp, GlassBorderSoft),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -32,13 +34,13 @@ fun PrayerTimeCard(prayer: PrayerTime, isNext: Boolean) {
         ) {
             Text(
                 text = prayer.turkishName,
-                color = if (isNext) GoldLight else TextWhite,
+                color = if (isNext) GoldLight else TextWhite.copy(alpha = 0.97f),
                 fontSize = 17.sp,
                 fontWeight = if (isNext) FontWeight.Bold else FontWeight.Medium
             )
             Text(
                 text = prayer.time,
-                color = if (isNext) GoldLight else TextWhite,
+                color = if (isNext) GoldLight else TextWhite.copy(alpha = 0.97f),
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Bold
             )

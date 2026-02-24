@@ -1,5 +1,6 @@
 package com.project.vaktim.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,15 +25,21 @@ fun NextPrayerCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(containerColor = NavySurface.copy(alpha = 0.62f)),
+        border = BorderStroke(1.dp, GlassBorder),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
                     brush = Brush.linearGradient(
-                        colors = listOf(GoldPrimary, GoldLight)
+                        colors = listOf(
+                            GlassHighlight,
+                            Color.Transparent,
+                            MidnightNavy.copy(alpha = 0.35f)
+                        )
                     )
                 )
         ) {
@@ -44,30 +51,30 @@ fun NextPrayerCard(
             ) {
                 Text(
                     text = "Sonraki Vakit: ${nextPrayer.turkishName}",
-                    color = MidnightNavy,
+                    color = GoldLight,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium
                 )
                 Text(
                     text = remainingTime,
-                    color = MidnightNavy,
+                    color = TextWhite,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                HorizontalDivider(color = MidnightNavy.copy(alpha = 0.2f))
+                HorizontalDivider(color = GlassBorderSoft)
                 Spacer(modifier = Modifier.height(12.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column {
-                        Text(text = "Miladi", color = MidnightNavy.copy(alpha = 0.5f), fontSize = 11.sp, fontWeight = FontWeight.Medium)
-                        Text(text = gregorianDate, color = MidnightNavy.copy(alpha = 0.8f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(text = "Miladi", color = GoldMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium)
+                        Text(text = gregorianDate, color = TextWhite, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
                     Column(horizontalAlignment = Alignment.End) {
-                        Text(text = "Hicri", color = MidnightNavy.copy(alpha = 0.5f), fontSize = 11.sp, fontWeight = FontWeight.Medium)
-                        Text(text = hijriDate, color = MidnightNavy.copy(alpha = 0.8f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(text = "Hicri", color = GoldMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium)
+                        Text(text = hijriDate, color = TextWhite, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
                 }
             }

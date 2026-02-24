@@ -1,5 +1,6 @@
 package com.project.vaktim.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.project.vaktim.data.model.DailyQuote
 import com.project.vaktim.ui.theme.GoldLight
 import com.project.vaktim.ui.theme.GoldMuted
+import com.project.vaktim.ui.theme.GlassBorderSoft
 import com.project.vaktim.ui.theme.NavySurface
 import com.project.vaktim.ui.theme.TextWhite
 
@@ -37,8 +39,10 @@ fun DailyQuotesSection(
 private fun QuoteLoadingCard() {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = NavySurface)
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = NavySurface.copy(alpha = 0.64f)),
+        border = BorderStroke(1.dp, GlassBorderSoft),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -58,8 +62,10 @@ private fun QuoteLoadingCard() {
 private fun VerseCard(quote: DailyQuote) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = NavySurface)
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = NavySurface.copy(alpha = 0.64f)),
+        border = BorderStroke(1.dp, GlassBorderSoft),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -99,8 +105,10 @@ private fun VerseCard(quote: DailyQuote) {
 private fun ErrorCard(message: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = NavySurface)
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = NavySurface.copy(alpha = 0.64f)),
+        border = BorderStroke(1.dp, GlassBorderSoft),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Text(
             text = message,

@@ -2,12 +2,22 @@ package com.project.vaktim.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Midnight Navy + Gold Theme (Prayer App)
-val GoldPrimary = Color(0xFFC5993E)      // Logo gold - primary accent
-val GoldLight = Color(0xFFDAB96E)         // Lighter gold for highlights
-val GoldMuted = Color(0xFFBFA36B)         // Muted gold for secondary text
-val MidnightNavy = Color(0xFF0D1B2A)     // Deep navy - main background
-val NavyCard = Color(0xFF1B2A3D)          // Slightly lighter navy - cards
-val NavySurface = Color(0xFF243447)       // Surface tone for verse card
-val TextWhite = Color(0xFFF0ECE3)         // Warm white for primary text
-val TextMuted = Color(0xFF8899AA)         // Muted blue-gray for secondary text
+val GoldPrimary = Color(0xFFC5993E)
+val GoldLight = Color(0xFFE0C27A)
+val GoldMuted = Color(0xFFC0A871)
+
+val MidnightNavy = Color(0xFF08121D)
+val MidnightNavySoft = Color(0xFF0F2234)
+val NavyCard = Color(0xA61A2D44)
+val NavySurface = Color(0x8C203A55)
+
+val GlassBorder = Color(0x59FFFFFF)
+val GlassBorderSoft = Color(0x33FFFFFF)
+val GlassHighlight = Color(0x26FFFFFF)
+
+val ScreenTopGlow = Color(0x40E0C27A)
+val ScreenBottomTint = Color(0x33207CCF)
+val ScreenSideGlow = Color(0x2E86B8FF)
+
+val TextWhite = Color(0xFFF5F3EE)
+val TextMuted = Color(0xFFA6B3C3)
