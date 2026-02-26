@@ -13,17 +13,13 @@ Vaktim, namaz vakitlerini gosteren, sonraki vakti hesaplayan ve bildirim cubugun
 
 ## Proje Gorselleri
 
-### Ana Ekran + Widget (Guncel)
+### Ana Ekran
 
-<img src="docs/images/screenshot-home-widget.png" alt="Vaktim Ana Ekran ve Widget" width="320" />
+<img src="docs/images/img.png" alt="Vaktim Ana Ekran" width="320" />
 
-### Bildirim Gorunumu (Guncel)
+### Bildirim Gorunumu
 
-<img src="docs/images/screenshot-notification.png" alt="Vaktim Bildirim Widget Karti" width="760" />
-
-### Bildirim Paneli (Guncel)
-
-<img src="docs/images/screenshot-notification-panel.png" alt="Vaktim Bildirim Paneli" width="760" />
+<img src="docs/images/img_1.png" alt="Vaktim Bildirim Karti" width="760" />
 
 ### Mimari Diyagram
 
@@ -78,7 +74,7 @@ Windows:
 
 ## APK Yayin Akisi
 
-Yeni release APK olusturduktan sonra tek dosya olarak `vaktim-1.0.4.apk` adiyla GitHub Release asset'e yukleyin:
+Yeni release APK olusturduktan sonra tek dosya olarak `vaktim-1.0.5.apk` adiyla GitHub Release asset'e yukleyin:
 
 ```powershell
 .\gradlew.bat assembleRelease
@@ -87,6 +83,6 @@ Yeni release APK olusturduktan sonra tek dosya olarak `vaktim-1.0.4.apk` adiyla 
   --ks-key-alias androiddebugkey `
   --ks-pass pass:android `
   --key-pass pass:android `
-  --out releases\vaktim-1.0.4.apk `
+  --out releases\vaktim-1.0.5.apk `
   app\build\outputs\apk\release\app-release-unsigned.apk
 ```
