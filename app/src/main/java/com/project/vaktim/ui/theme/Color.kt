@@ -2,22 +2,22 @@ package com.project.vaktim.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val GoldPrimary = Color(0xFFC5993E)
-val GoldLight = Color(0xFFE0C27A)
-val GoldMuted = Color(0xFFC0A871)
+val GoldPrimary = Color(0xFFC17930)
+val GoldLight = Color(0xFFD18A45)
+val GoldMuted = Color(0xFFAA7A4A)
 
-val MidnightNavy = Color(0xFF08121D)
-val MidnightNavySoft = Color(0xFF0F2234)
-val NavyCard = Color(0xA61A2D44)
-val NavySurface = Color(0x8C203A55)
+val MidnightNavy = Color(0xFFF5F4F1)
+val MidnightNavySoft = Color(0xFFF0EEEA)
+val NavyCard = Color(0xFFFFFFFF)
+val NavySurface = Color(0xFFFFFFFF)
 
-val GlassBorder = Color(0x59FFFFFF)
-val GlassBorderSoft = Color(0x33FFFFFF)
-val GlassHighlight = Color(0x26FFFFFF)
+val GlassBorder = Color(0xFFDADADA)
+val GlassBorderSoft = Color(0xFFE7E7E7)
+val GlassHighlight = Color(0xFFF8F8F8)
 
-val ScreenTopGlow = Color(0x40E0C27A)
-val ScreenBottomTint = Color(0x33207CCF)
-val ScreenSideGlow = Color(0x2E86B8FF)
+val ScreenTopGlow = Color(0x1FE0C27A)
+val ScreenBottomTint = Color(0x14D9D4CB)
+val ScreenSideGlow = Color(0x14000000)
 
-val TextWhite = Color(0xFFF5F3EE)
-val TextMuted = Color(0xFFA6B3C3)
+val TextWhite = Color(0xFF1F1F1F)
+val TextMuted = Color(0xFF6B6B6B)

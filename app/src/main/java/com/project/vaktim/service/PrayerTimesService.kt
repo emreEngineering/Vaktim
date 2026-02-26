@@ -14,6 +14,7 @@ import com.project.vaktim.data.model.PrayerTime
 import com.project.vaktim.di.AppGraph
 import com.project.vaktim.domain.GetPrayerDashboardUseCase
 import com.project.vaktim.domain.model.LocationSelection
+import com.project.vaktim.widget.PrayerTimesAppWidgetProvider
 import java.time.LocalDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +62,7 @@ class PrayerTimesService : Service() {
         city = AppDefaults.DEFAULT_CITY,
         country = AppDefaults.DEFAULT_COUNTRY
     )
+    private var lastLoadedLocation: LocationSelection? = null
     private var lastLoadedDate: LocalDate? = null
     private var prayerTimes: List<PrayerTime> = emptyList()
 
@@ -123,7 +125,9 @@ class PrayerTimesService : Service() {
     }
 
     private fun shouldReloadPrayerTimes(): Boolean {
-        return prayerTimes.isEmpty() || lastLoadedDate != LocalDate.now()
+        return prayerTimes.isEmpty() ||
+            lastLoadedDate != LocalDate.now() ||
+            lastLoadedLocation != location
     }
 
     private suspend fun loadPrayerTimes() {
@@ -131,6 +135,7 @@ class PrayerTimesService : Service() {
             onSuccess = { dashboard ->
                 prayerTimes = dashboard.prayerTimes
                 lastLoadedDate = LocalDate.now()
+                lastLoadedLocation = location.copy()
                 updateNotification()
             },
             onFailure = { error ->
@@ -145,6 +150,11 @@ class PrayerTimesService : Service() {
     private fun updateNotification() {
         if (prayerTimes.isEmpty()) return
         notificationHelper.notify(notificationHelper.createCustomNotification(prayerTimes))
+        PrayerTimesAppWidgetProvider.updateFromPrayerTimes(
+            context = this,
+            location = location,
+            prayerTimes = prayerTimes
+        )
     }
 
     private fun millisUntilNextMinute(): Long {

@@ -15,6 +15,8 @@ import com.project.vaktim.MainActivity
 import com.project.vaktim.R
 import com.project.vaktim.data.model.PrayerTime
 import com.project.vaktim.util.PrayerTimeUtils
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class NotificationHelper(private val context: Context) {
 
@@ -61,7 +63,7 @@ class NotificationHelper(private val context: Context) {
             }
         }
 
-        applyNotificationTextColors(collapsedView, expandedView, nameIds, timeIds)
+        applyNotificationTextColors(collapsedView, expandedView, prayerTimes, nameIds, timeIds)
 
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_hilal)
@@ -107,6 +109,7 @@ class NotificationHelper(private val context: Context) {
     private fun applyNotificationTextColors(
         collapsedView: RemoteViews,
         expandedView: RemoteViews,
+        prayerTimes: List<PrayerTime>,
         nameIds: List<Int>,
         timeIds: List<Int>
     ) {
@@ -114,9 +117,36 @@ class NotificationHelper(private val context: Context) {
             Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
         val primaryTextColor = if (isNightMode) Color.WHITE else Color.BLACK
         val secondaryTextColor = if (isNightMode) Color.parseColor("#E0E0E0") else Color.DKGRAY
+        val highlightColor = Color.parseColor("#C17930")
+        val activePrayerName = findActivePrayerName(prayerTimes)
 
         collapsedView.setTextColor(R.id.textTimes, primaryTextColor)
-        nameIds.forEach { expandedView.setTextColor(it, primaryTextColor) }
-        timeIds.forEach { expandedView.setTextColor(it, secondaryTextColor) }
+        nameIds.forEachIndexed { index, nameId ->
+            val prayer = prayerTimes.getOrNull(index)
+            val isActive = prayer?.name == activePrayerName
+            expandedView.setTextColor(nameId, if (isActive) highlightColor else primaryTextColor)
+            expandedView.setTextColor(timeIds[index], if (isActive) highlightColor else secondaryTextColor)
+        }
+    }
+
+    private fun findActivePrayerName(
+        prayerTimes: List<PrayerTime>,
+        now: LocalTime = LocalTime.now()
+    ): String? {
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+        val mainPrayers = prayerTimes.filter { it.name != "Sunrise" }
+        if (mainPrayers.isEmpty()) return null
+
+        var currentPrayerName: String? = null
+        mainPrayers.forEach { prayer ->
+            runCatching { LocalTime.parse(prayer.time, formatter) }
+                .onSuccess { prayerTime ->
+                    if (!prayerTime.isAfter(now)) {
+                        currentPrayerName = prayer.name
+                    }
+                }
+        }
+
+        return currentPrayerName ?: mainPrayers.lastOrNull()?.name
     }
 }

@@ -7,18 +7,23 @@ Vaktim, namaz vakitlerini gosteren, sonraki vakti hesaplayan ve bildirim cubugun
 - Sehir/ulke/ilce bazli namaz vakti sorgulama
 - Sonraki vakit ve kalan sure hesaplama
 - Foreground service ile bildirim panelinde vakit gosterimi
+- Ana ekrana eklenebilen namaz vakti widget'i
 - Gunluk ayet/meal cekme
 - SOLID odakli katmanli mimari (UI / Domain / Data / Service / DI)
 
 ## Proje Gorselleri
 
-### Ana Ekran (Temsili)
+### Ana Ekran + Widget (Guncel)
 
-<img src="docs/images/preview-home.svg" alt="Vaktim Ana Ekran" width="320" />
+<img src="docs/images/screenshot-home-widget.png" alt="Vaktim Ana Ekran ve Widget" width="320" />
 
-### Bildirim Gorunumu (Temsili)
+### Bildirim Gorunumu (Guncel)
 
-<img src="docs/images/preview-notification.svg" alt="Vaktim Bildirim" width="760" />
+<img src="docs/images/screenshot-notification.png" alt="Vaktim Bildirim Widget Karti" width="760" />
+
+### Bildirim Paneli (Guncel)
+
+<img src="docs/images/screenshot-notification-panel.png" alt="Vaktim Bildirim Paneli" width="760" />
 
 ### Mimari Diyagram
 
@@ -73,9 +78,15 @@ Windows:
 
 ## APK Yayin Akisi
 
-Yeni APK olusturduktan sonra tek dosya olarak `vaktim-1.0.apk` adiyla GitHub Release asset'e yukleyin:
+Yeni release APK olusturduktan sonra tek dosya olarak `vaktim-1.0.4.apk` adiyla GitHub Release asset'e yukleyin:
 
 ```powershell
-.\gradlew.bat assembleDebug
-Copy-Item app/build/outputs/apk/debug/app-debug.apk vaktim-1.0.apk -Force
+.\gradlew.bat assembleRelease
+& "C:\Users\<kullanici>\AppData\Local\Android\Sdk\build-tools\36.1.0\apksigner.bat" sign `
+  --ks "C:\Users\<kullanici>\.android\debug.keystore" `
+  --ks-key-alias androiddebugkey `
+  --ks-pass pass:android `
+  --key-pass pass:android `
+  --out releases\vaktim-1.0.4.apk `
+  app\build\outputs\apk\release\app-release-unsigned.apk
 ```

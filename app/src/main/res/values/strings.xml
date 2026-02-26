@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Vaktim</string>
+    <string name="widget_description">Ana ekran namaz vakti widgeti</string>
+    <string name="widget_error">Veri alinamadi. Yenileye dokun.</string>
 </resources>
